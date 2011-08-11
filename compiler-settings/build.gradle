@@ -7,3 +7,7 @@ executables {
         }
     }
 }
+
+task wrapper(type: Wrapper) {
+    distributionUrl = "http://repo.gradle.org/gradle/distributions-snapshots/gradle-1.0-rc-1-20110811124234+0200-bin.zip"
+}
