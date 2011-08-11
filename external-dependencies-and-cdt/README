@@ -1,0 +1,9 @@
+Upload the library to the makeshift repository by running…
+
+    ./gradlew :hello-lib:uploadArchives
+
+You can then “resolve” the dependency and generate the CDT project metadata by running
+
+    ./gradlew cdt
+
+Each project (i.e. exe and hello-lib) can be imported (as separate projects) into Eclipse (right click in the workspace and select import, choose existing project from file system).

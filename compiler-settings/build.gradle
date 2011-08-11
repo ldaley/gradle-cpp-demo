@@ -1,0 +1,9 @@
+apply plugin: "cpp-exe"
+
+executables {
+    main {
+        spec {
+            args "-g", '-DMESSAGE="Hello, World!\\n"'
+        }
+    }
+}

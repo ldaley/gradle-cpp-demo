@@ -1,0 +1,14 @@
+project(":hello-lib") {
+    apply plugin: "cpp-lib"
+}
+
+project(":exe") {
+    apply plugin: "cpp-exe"
+    cpp {
+        sourceSets {
+            main {
+                libs << project(":hello-lib").libraries.main
+            }
+        }
+    }
+}

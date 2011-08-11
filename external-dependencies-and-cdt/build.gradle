@@ -1,0 +1,49 @@
+project(":hello-lib") {
+    apply plugin: "cpp-lib"
+    apply plugin: "eclipse-cdt"
+    apply plugin: "maven"
+
+    group = "cpp-demo"
+    version = 1.0
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: uri("${buildDir}/repo"))
+            }
+        }
+    }
+}
+
+project(":exe") {
+    apply plugin: "cpp-exe"
+    apply plugin: "eclipse-cdt"
+    apply plugin: "maven"
+
+    group = "cpp-demo"
+    version = 1.0
+
+    repositories {
+        mavenRepo urls: "file://${new File(project(":hello-lib").buildDir, "repo").absolutePath}"
+    }
+
+    cpp {
+        sourceSets {
+            main {
+                dependency group: "cpp-demo", name: "hello-lib", version: "1.0"
+            }
+        }
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: uri("${buildDir}/repo"))
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    distributionUrl = "http://repo.gradle.org/gradle/distributions-snapshots/gradle-1.0-rc-1-20110811124234+0200-bin.zip"
+}
