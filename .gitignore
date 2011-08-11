@@ -2,3 +2,6 @@ build
 Debug
 Release
 .gradle
+.cproject
+.project
+.DS_Store
